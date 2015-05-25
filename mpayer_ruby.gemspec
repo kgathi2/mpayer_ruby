@@ -4,14 +4,14 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'mpayer/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "mpayer"
+  spec.name          = "mpayer_ruby"
   spec.version       = Mpayer::VERSION
   spec.authors       = ["Kariuki Gathitu"]
   spec.email         = ["kgathi2@gmail.com"]
 
-  spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = %q{Ruby client for interfacing with http://app.mpayer.co.ke .}
+  spec.description   = %q{Interfaces with Mpayer payment gateway api  }
+  spec.homepage      = "https://github.com/kgathi2/mpayer_ruby"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
@@ -29,13 +29,14 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.9"
   spec.add_development_dependency "rake", "~> 10.0"
-  spec.add_development_dependency "guard"
-  spec.add_development_dependency "guard-minitest"
-  spec.add_development_dependency "pry"
-  spec.add_development_dependency "pry-nav"
-  spec.add_development_dependency "pry-alias"
-
-  spec.add_dependency 'httparty'
-  spec.add_dependency 'wsse'
-  spec.add_dependency 'hashie'
+  spec.add_development_dependency "guard", "~> 2.12"
+  spec.add_development_dependency "minitest", "~> 5.6"
+  spec.add_development_dependency "guard-minitest", "~> 2.4"
+  spec.add_development_dependency "minitest-reporters", "~> 1.0"
+  spec.add_development_dependency "pry", "~> 0.10"
+  spec.add_development_dependency "pry-nav", "~> 0.2"
+  spec.add_development_dependency "pry-alias", "~> 0.0"
+  spec.add_dependency 'httparty', "~> 0.13"
+  spec.add_dependency 'wsse', "~> 0.0"
+  spec.add_dependency 'hashie', "~> 3.4"
 end

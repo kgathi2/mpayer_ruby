@@ -10,11 +10,11 @@ require "mpayer/endpoints/transaction"
 require "mpayer/endpoints/account"
 require "mpayer/endpoints/payable"
 
-begin
-  require "pry"
-	require "pry-alias"
-rescue LoadError
-end
+# begin
+#   require "pry"
+# 	require "pry-alias"
+# rescue LoadError
+# end
 
 module Mpayer
 	class << self

@@ -1,11 +1,13 @@
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
-require 'mpayer'
 
+require 'mpayer_ruby'
+require 'minitest'
 require 'minitest/unit'
 require 'minitest/autorun'
 require 'minitest/pride'
-# require 'minitest/reporters' # requires the gem
-# require 'pry'
+require 'minitest/reporters' # requires the gem
+require 'pry'
+require "pry-alias"
 
 # Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new # spec-like progress
 

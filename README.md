@@ -4,9 +4,7 @@ http://www.smashingmagazine.com/2014/04/08/how-to-build-a-ruby-gem-with-bundler-
 
 http://blakewilliams.me/blog/developing-gems-with-tdd-and-minitest-pt-1
 
-Mpayer Ruby is a gem that makes it easy to integrate to Mpayer payment gateway (http://mpayer.co.ke). It allows for railsequ way of interacting with Mpayer objects.  Put your Ruby code in the file `lib/mpayer`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Mpayer Ruby is a gem that makes it easy to integrate to [Mpayer payment gateway](http://mpayer.co.ke). It allows for railsesque way of interacting with Mpayer objects.  
 
 ## Installation
 
@@ -26,7 +24,7 @@ Or install it yourself as:
 
 ## Usage
 
-Mpayer uses digest authenticaton. So first thing is to get the credentials of a teller Mpayer account. This are the stored as environment variables. so add the following to your ~/.bash_profile file or wherever else you loan ENV variables
+First thing is to get the credentials of an Mpayer teller. This are the stored as environment variables. Add the following to your `~/.bash_profile` file or wherever else you load ENV variables
 
 ```sh
 export MPAYER_USER=<Your User name>
@@ -34,7 +32,7 @@ export MPAYER_TOKEN=<Your token>
 ```
 
 ## Configurations
-To configure credendials on you code use. For Rails, put this in config/initializers/mpayer.rb
+To configure credentials locally on you code use config block below. For Rails, put this in `config/initializers/mpayer.rb`
 
 ```ruby
 Mpayer.setup do |config|
@@ -42,6 +40,9 @@ Mpayer.setup do |config|
 	config.token = <Your token>
 end
 ```
+
+Versioning is not currently supported. 
+
 ## Quick Example
 
 ```ruby
@@ -56,15 +57,15 @@ end
 #Get all clients in your organisation
 clients = Mpayer::Client.all(per:1,per_page:100)
 
-#Get One client in your organisation
+#Get one client in your organisation
 clients = Mpayer::Client.find(123)
 
-#Instantiate without http call, obviously if you know that the client must exist
+#Instantiate without http call, obviously if you know that the client exists
 clients = Mpayer::Client.find(123, fetch:false)
 ```
 
 ## Endpoints
-Mpayer gem currenly supports a few endpoint below 
+Mpayer gem currently supports a few endpoint below 
 
 https://app.mpayer.co.ke/api/client
 https://app.mpayer.co.ke/api/accounts
@@ -164,7 +165,7 @@ payable.destroy# Delete a payable
 ### Transactions
 
 ```ruby
-# Note cr_party is account recieving payment and dr_party is account paying out
+# Note: cr_party is the recieving (credited) account while dr_party is paying (debited) account
 
 transactions = Mpayer::Transaction.all(from: Time.now -  (86400*400))
 
@@ -183,7 +184,7 @@ transfer = Mpayer::Transaction.transfer(body)
 
 ### Fetch
 ```ruby
-# Used to interact with https://app.mpayer.co.ke
+# Used to interact with https://app.mpayer.co.ke/api
 
 Mpayer.setup do |config|
 	config.user_no = 'GLOBAL_USER'
@@ -198,12 +199,16 @@ Mpayer::Fetch.delete(url)
 
 ```
 
-
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `bin/console` for an interactive prompt that will allow you to experiment.
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release` to create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+
+## Todo
+1. Add Webmock for faster / localised test or sinatra app method
+2. Add versioning
+
 
 ## Contributing
 

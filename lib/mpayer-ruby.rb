@@ -1,0 +1,1 @@
+require 'mpayer_ruby'
