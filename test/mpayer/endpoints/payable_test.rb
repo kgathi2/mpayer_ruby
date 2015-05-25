@@ -22,7 +22,6 @@ class TestMpayerPayable < Minitest::Test
 		assert(payable.is_a?(Mpayer::Payable), "Failure message.")
 		payable = Mpayer::Payable.where(ref_id:"Ksdfsfsdf000411")
 		assert_nil(payable, "Failure message.")
-		assert(payable.is_a?(Mpayer::Payable), "Failure message.")
 	end
 
 	def test_create_and_destroy_payable
