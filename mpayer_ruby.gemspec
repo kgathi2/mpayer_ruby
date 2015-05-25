@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Kariuki Gathitu"]
   spec.email         = ["kgathi2@gmail.com"]
 
-  spec.summary       = %q{Ruby client for interfacing with http://app.mpayer.co.ke .}
+  spec.summary       = %q{Ruby client for interfacing with http://app.mpayer.co.ke/api }
   spec.description   = %q{Interfaces with Mpayer payment gateway api  }
   spec.homepage      = "https://github.com/kgathi2/mpayer_ruby"
   spec.license       = "MIT"
@@ -26,6 +26,7 @@ Gem::Specification.new do |spec|
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
+  spec.required_ruby_version = '~> 2.0'
 
   spec.add_development_dependency "bundler", "~> 1.9"
   spec.add_development_dependency "rake", "~> 10.0"

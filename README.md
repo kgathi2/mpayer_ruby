@@ -1,20 +1,14 @@
 # Mpayer
 
-[![Build Status](https://travis-ci.org/kgathi2/mpayer_ruby.svg)](https://travis-ci.org/kgathi2/mpayer_ruby)
+[![Build Status](https://travis-ci.org/kgathi2/mpayer_ruby.svg)](https://travis-ci.org/kgathi2/mpayer_ruby)  [![Gem Version](https://badge.fury.io/rb/mpayer_ruby.svg)](http://badge.fury.io/rb/mpayer_ruby)  [![Coverage Status](https://coveralls.io/repos/kgathi2/mpayer_ruby/badge.svg)](https://coveralls.io/r/kgathi2/mpayer_ruby)
 
-[![Gem Version](https://badge.fury.io/rb/sinderella.png)](http://badge.fury.io/rb/mpayer_ruby)
-
-[![Coverage Status](https://coveralls.io/repos/kgathi2/mpayer_ruby/badge.svg)](https://coveralls.io/r/kgathi2/mpayer_ruby)
-
-http://www.smashingmagazine.com/2014/04/08/how-to-build-a-ruby-gem-with-bundler-test-driven-development-travis-ci-and-coveralls-oh-my/
-
-http://blakewilliams.me/blog/developing-gems-with-tdd-and-minitest-pt-1
-
-Mpayer Ruby is a gem that makes it easy to integrate to [Mpayer payment gateway](http://mpayer.co.ke). It allows for railsesque way of interacting with Mpayer objects.  
+A ruby client that makes it easy to integrate to [Mpayer payment gateway](http://mpayer.co.ke). It allows for railsesque way of interacting with Mpayer objects. Is compatible currently with Mpayer version 1
 
 ## Installation
 
 Add this line to your application's Gemfile:
+
+gem requires `ruby ~>2.0`
 
 ```ruby
 gem 'mpayer_ruby'
