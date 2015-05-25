@@ -10,7 +10,7 @@ module Mpayer
 				self.send("#{k.to_s}=",v) rescue nil
 			end
 			@config = set_config(config)
-	    @is_new ||= true
+	    # @is_new ||= true
 	    @pagination  ||= {}
 	    after_initialize
 		end
@@ -50,7 +50,7 @@ module Mpayer
 			when :transactions
 				raise ArgumentError if options[:account_id].nil?
 				"/#{self.endpoint}/#{self.id}/accounts/#{options[:account_id]}/#{association}"
-			when :accounts, :payables
+			else # :accounts, :payables, :members
 				"/#{self.endpoint}/#{self.id}/#{association}"
 			end
 		end

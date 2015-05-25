@@ -15,13 +15,10 @@ class TestMpayerClient < Minitest::Test
 		client_one = clients.first
 		client = Mpayer::Client.find(client_one.id)
 		assert(client.is_a? Mpayer::Client)
-		client.response.email = nil
-		assert_equal(nil, client.email)
-		assert_raises(NoMethodError) { client.badmethods }
 	end
 
 	def test_create_client
-		skip
+		skip skip
 		client_attributes = {
 			client: { 
 				client_name: "Kiki Lolo", 
@@ -55,7 +52,7 @@ class TestMpayerClient < Minitest::Test
 				name: 'PZ alias Account', 
 				ac_type: 'cu', 
 				mandate: 's', 
-				aliases_attributes: [{org_id:2 ,alias_key:'telephone', alias_value:'pz_test2'}]
+				aliases_attributes: [{org_id:2 ,alias_key:'telephone', alias_value:'pz_test3'}]
 				# tags_attributes:@tags, 
 				# infos_attributes:@infos
 				}
@@ -67,7 +64,7 @@ class TestMpayerClient < Minitest::Test
 	end
 
 	def test_get_client_accounts
-		skip skip
+		skip
 		accounts = Mpayer::Client.find(26, fetch:false).accounts
 		assert(accounts.is_a?(Array), "Failure message.")
 	end
@@ -83,17 +80,6 @@ class TestMpayerClient < Minitest::Test
 		account_id = 87 # account = client.accounts.last.id
 		transactions = Mpayer::Client.find(26, fetch:false).transactions(account_id)
 		assert(transactions.is_a?(Array), "Failure message.")
-	end
-
-	def test_nothing
-		skip
-
-		client = Mpayer::Client.find(26, fetch:false)
-		# binding.pry
-		account = client.accounts.last
-		# client.send(:assoc_link,:transactions,account_id:account.id)
-		# binding.pry
-		# client.find_all(:transactions,account_id:account.id)
 	end
 
 end

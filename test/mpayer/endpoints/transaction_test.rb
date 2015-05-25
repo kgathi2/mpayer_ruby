@@ -13,7 +13,7 @@ class TestMpayerTransaction < Minitest::Test
 		assert(transactions.is_a?(Array), "Failure message.")
 	end
 
-	def test_get_transactions
+	def test_search_transactions
 		skip
 		transaction = Mpayer::Transaction.where(ref_id:"KT0041[P]-010000402")
 		refute_nil(transaction, "Failure message.")

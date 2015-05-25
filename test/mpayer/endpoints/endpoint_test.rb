@@ -14,7 +14,13 @@ class TestMpayerEndPoint < Minitest::Test
 	end
 
 	def test_missing_methods
-		
+		client = Mpayer::Client.find(23,fetch:false)
+		client.response = Hashie::Mash.new({email:'kiki@lolo.com', name:'Kiki Lolo'})
+		assert_equal('kiki@lolo.com', client.email)
+		assert_equal('Kiki Lolo', client.name)
+		client.response.email = nil
+		assert_equal(nil, client.email)
+		assert_raises(NoMethodError) { client.badmethods }
 	end
 
 	def test_client_assoc_link

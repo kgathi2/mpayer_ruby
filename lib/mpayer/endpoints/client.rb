@@ -22,13 +22,12 @@ module Mpayer
 			def create(options={})
 				url = "/clients"
 				response = Mpayer::Fetch.post(url,body: options.to_json)
-				client_id = response.id 
-				client = new(options.merge!(id:client_id,response:response))
+				client = new(options.merge!(id:response.id ,response:response))
 			end	
 
 		end
 
-		# Mpayer::Client.new(id:20284).account(accountsid)
+		# Mpayer::Client.find(id:20284).account(accountsid)
 		def account(account_id=nil,client_id=id)
 			account_id ||= @account.id rescue nil
 			raise ArgumentError if client_id.nil? or account_id.nil?
@@ -41,7 +40,7 @@ module Mpayer
 		end
 		
     # options = {account:{name: name, ac_type: ac_type, mandate: mandate, tags_attributes:@tags, infos_attributes:@infos}}
-		# Mpayer::Client.new(id:20284).create_account(options)
+		# Mpayer::Client.find(id:20284).create_account(options)
 		def create_account(options={})
       url = "/clients/#{self.id}/accounts/new"
 			@account = Mpayer::Fetch.post(url,body: options.to_json)

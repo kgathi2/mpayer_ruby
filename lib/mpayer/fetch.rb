@@ -3,7 +3,7 @@ module Mpayer
 		include HTTParty
 		# base_uri "http://beta.json-generator.com"
 		base_uri "https://app.mpayer.co.ke/api/"
-    parser proc {|data| Hashie::Mash.new(response:JSON.parse(data)).response}
+    parser proc {|data| Hashie::Mash.new(response: (JSON.parse(data) rescue {data:data}.to_json)  ).response}
     format :json
     headers 
 

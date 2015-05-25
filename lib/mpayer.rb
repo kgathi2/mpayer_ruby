@@ -11,7 +11,8 @@ require "mpayer/endpoints/account"
 require "mpayer/endpoints/payable"
 
 begin
-	require "pry"
+  require "pry"
+	require "pry-alias"
 rescue LoadError
 end
 

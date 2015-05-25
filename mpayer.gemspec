@@ -33,6 +33,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "guard-minitest"
   spec.add_development_dependency "pry"
   spec.add_development_dependency "pry-nav"
+  spec.add_development_dependency "pry-alias"
 
   spec.add_dependency 'httparty'
   spec.add_dependency 'wsse'
