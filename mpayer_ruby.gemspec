@@ -36,6 +36,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "pry", "~> 0.10"
   spec.add_development_dependency "pry-nav", "~> 0.2"
   spec.add_development_dependency "pry-alias", "~> 0.0"
+  spec.add_development_dependency "coveralls", '~> 0'
+
   spec.add_dependency 'httparty', "~> 0.13"
   spec.add_dependency 'wsse', "~> 0.0"
   spec.add_dependency 'hashie', "~> 3.4"

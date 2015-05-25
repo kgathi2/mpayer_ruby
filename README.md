@@ -1,5 +1,11 @@
 # Mpayer
 
+[![Build Status](https://travis-ci.org/kgathi2/mpayer_ruby.svg)](https://travis-ci.org/kgathi2/mpayer_ruby)
+
+[![Gem Version](https://badge.fury.io/rb/sinderella.png)](http://badge.fury.io/rb/mpayer_ruby)
+
+[![Coverage Status](https://coveralls.io/repos/kgathi2/mpayer_ruby/badge.svg)](https://coveralls.io/r/kgathi2/mpayer_ruby)
+
 http://www.smashingmagazine.com/2014/04/08/how-to-build-a-ruby-gem-with-bundler-test-driven-development-travis-ci-and-coveralls-oh-my/
 
 http://blakewilliams.me/blog/developing-gems-with-tdd-and-minitest-pt-1
