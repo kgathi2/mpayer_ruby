@@ -68,8 +68,11 @@ clients = Mpayer::Client.find(123, fetch:false)
 Mpayer gem currently supports a few endpoint below 
 
 https://app.mpayer.co.ke/api/client
+
 https://app.mpayer.co.ke/api/accounts
+
 https://app.mpayer.co.ke/api/transactions
+
 https://app.mpayer.co.ke/api/payables
 
 All responses are objects and can be accessed with dot notation
