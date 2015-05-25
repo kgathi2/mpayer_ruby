@@ -8,29 +8,29 @@ class TestMpayerTransaction < Minitest::Test
 	end
 
 	def test_get_all_transactions
-		skip
+		# skip
 		transactions = Mpayer::Transaction.all(from: Time.now -  (86400*400))
 		assert(transactions.is_a?(Array), "Failure message.")
 	end
 
 	def test_search_transactions
-		skip
+		# skip
 		transaction = Mpayer::Transaction.where(ref_id:"KT0041[P]-010000402")
 		refute_nil(transaction, "Failure message.")
 		assert(transaction.is_a?(Mpayer::Transaction), "Failure message.")
 	end
 
 	def test_deposit
-		skip
+		# skip
     body = {particulars:"particulars",amount:1000, cr_party: "pz_test"}
-    body.merge!({ref_num:'254720215569'})
+    # body.merge!({ref_num:''})
 		deposit = Mpayer::Transaction.deposit(body)
 		assert(deposit.is_a?(Mpayer::Transaction), "Failure message.")
 		refute_nil(deposit.id, "Failure message.")
 	end
 
 	def test_withdraw
-		skip
+		# skip
 		body = {particulars:"particulars",amount:10, dr_party: "pz_test"}
 		withdrawal = Mpayer::Transaction.withdraw(body)
 		assert(withdrawal.is_a?(Mpayer::Transaction), "Failure message.")
@@ -38,7 +38,7 @@ class TestMpayerTransaction < Minitest::Test
 	end
 
 	def test_transfer
-		skip
+		# skip
 		body = {particulars:"particulars",amount:10, cr_party: "pz_test2", dr_party:"pz_test" }
 		transfer = Mpayer::Transaction.transfer(body)
 		assert(transfer.is_a?(Mpayer::Transaction), "Failure message.")

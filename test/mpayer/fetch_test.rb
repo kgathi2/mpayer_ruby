@@ -2,7 +2,7 @@ require 'test_helper'
 
 class TestMpayerFetch < Minitest::Test
   def test_unauthorised
-    skip
+    # skip
   	Mpayer.setup do |config|
 			config.user_no = 'GLOBAL_USER'
 			config.token = 'GLOBAL_TOKEN'
