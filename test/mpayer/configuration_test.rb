@@ -16,7 +16,6 @@ class TestMpayerConfiguration < Minitest::Test
 	end
 
 	def test_client_local_vs_global_configs
-		# skip
 		Mpayer.setup do |config|
 			config.user_no = 'GLOBAL_USER'
 			config.token = 'GLOBAL_TOKEN'

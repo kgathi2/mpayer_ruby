@@ -9,7 +9,7 @@ class TestMpayerClient < Minitest::Test
 	end
 
 	def test_client_find_and_all
-		skip
+		# skip
 		clients = Mpayer::Client.all
 		assert(clients.is_a? Array)
 		client_one = clients.first
@@ -37,7 +37,7 @@ class TestMpayerClient < Minitest::Test
 	end
 
 	def test_get_client_account
-		skip
+		# skip
 		client = Mpayer::Client.find(26, fetch:false)
 		accounts = client.accounts(per:1,per_page:100)
 		account = client.account(accounts.first.id)
@@ -64,19 +64,19 @@ class TestMpayerClient < Minitest::Test
 	end
 
 	def test_get_client_accounts
-		skip
+		# skip
 		accounts = Mpayer::Client.find(26, fetch:false).accounts
 		assert(accounts.is_a?(Array), "Failure message.")
 	end
 
 	def test_get_client_payables
-		skip
+		# skip
 		accounts = Mpayer::Client.find(26, fetch:false).payables
 		assert(accounts.is_a?(Array), "Failure message.")
 	end
 
 	def test_get_client_account_transactions
-		skip
+		# skip
 		account_id = 87 # account = client.accounts.last.id
 		transactions = Mpayer::Client.find(26, fetch:false).transactions(account_id)
 		assert(transactions.is_a?(Array), "Failure message.")

@@ -7,7 +7,7 @@ class TestMpayerPayable < Minitest::Test
 	end
 
 	def test_payable_find_and_all
-		skip
+		# skip
 		payables = Mpayer::Payable.all
 		assert(payables.is_a? Array)
 		payable_one = payables.first
@@ -16,7 +16,7 @@ class TestMpayerPayable < Minitest::Test
 	end
 
 	def test_search_payable
-		skip
+		# skip
 		payable = Mpayer::Payable.where(ref_id:"KT0041-010000411")
 		refute_nil(payable, "Failure message.")
 		assert(payable.is_a?(Mpayer::Payable), "Failure message.")
@@ -25,8 +25,8 @@ class TestMpayerPayable < Minitest::Test
 		assert(payable.is_a?(Mpayer::Payable), "Failure message.")
 	end
 
-	def test_create_payable
-		skip
+	def test_create_and_destroy_payable
+		# skip
 		payable_items = []
 		[*0..5].each do |n|
 			payable_items << {
@@ -57,12 +57,11 @@ class TestMpayerPayable < Minitest::Test
     	}
     payable = Mpayer::Payable.create(options)
 		refute_nil(payable.id, "Failure message.")
-	end
 
-	def test_delete_payable
-		skip
 		payable = Mpayer::Payable.find(8818,fetch:false)
 		payable.destroy
+		assert_equal(payable.id, nil)
+		assert_equal(payable.attributes, nil)
 	end
 
 end
