@@ -208,6 +208,22 @@ After checking out the repo, run `bin/setup` to install dependencies. Then, run 
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release` to create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
+## Testing
+mpayer_ruby has used `webmock` gem to stub out real request to mpayer.co.ke. In order to make tests work, first generate the json api on file using the rake task
+
+    $ rake load:mpayer
+
+This will generate local copies of mpayer endpoints for testing. Should work well for unit testing. 
+
+WHen you want to run test against real mpayer.co.ke for real responses, run it with the environmental variable `CI_TEST=ON` as follows
+
+    $ CI_TEST=ON rake test
+ 
+ or 
+
+    $ CI_TEST=ON bundle exec guard
+
+
 ## Todo
 1. Add Webmock for faster / localised test or sinatra app method
 2. Add versioning

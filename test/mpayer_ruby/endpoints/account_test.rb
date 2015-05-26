@@ -19,7 +19,7 @@ class TestMpayerAccount < Minitest::Test
 		# skip
 		account = Mpayer::Account.find(25735)
 		new_name = account.name.next
-		account.update(name:new_name)
+		updated_account = account.update(name:new_name)
 		assert_equal(new_name, account.name)
 	end
 

@@ -7,3 +7,4 @@
 /pkg/
 /spec/reports/
 /tmp/
+/lib/mpayer_ruby/support/fake_mpayer/**/*.json
