@@ -1,3 +1,13 @@
+#     namespace 'transactions' do
+#       get '/' , :action=>:index
+#       get '/all' ,:action=>:all_transactions
+#       get ':ref_id' , :action=>:show_by_ref
+#       # put 'deposit' ,:action=>'deposit' ,:format=>'xml'
+#       put :deposit ,:action=> :deposit # ,:format=>'json'
+#       delete :withdraw ,:action=> :withdraw
+#       post :transfer ,:action=> :transfer
+#     end
+
 require 'test_helper'
 
 class TestMpayerTransaction < Minitest::Test

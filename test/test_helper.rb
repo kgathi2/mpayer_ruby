@@ -26,10 +26,15 @@ class Minitest::Test
 	def setup
 		Mpayer.setup do |config|
 			# Setup test with Mpayer Demo account. 
+			# config.base_url = ENV['MPAYER_URL']
 			config.user_no = ENV['MPAYER_USER']
 			config.token = ENV['MPAYER_TOKEN']
 		end
 		# https://robots.thoughtbot.com/how-to-stub-external-services-in-tests
     stub_request(:any, /app.mpayer.co.ke/).to_rack(FakeMpayer) if ENV['CI_TEST'].nil? and ENV['LOAD_MPAYER'] != "true"
+    # Not Authorized
+    # stub_request(:get, "https://app.mpayer.co.ke/api/clients/12345").
+    # with(:headers => {'Accept'=>'application/json', 'Content-Type'=>'application/json', 'X-Wsse'=>''}).
+    # to_return(:status => 200, :body => {base:["Authentication Failed"]}.to_json, :headers => {})
 	end
 end

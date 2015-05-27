@@ -1,3 +1,20 @@
+#     namespace 'clients' do
+#       get '/', :action=>:index
+#       get 'all_clients' ,:action=>:all_clients
+#       get ':id', :action=>:show
+#       put ':id', :action=>:update
+#       get ':id/accounts' , :action=>:accounts
+#       post ':id/accounts/new' , :action=>:create_account
+#       get ':id/accounts/:account_id' , :action=>:show_account
+#       get ':id/accounts/:account_id/transactions' , :action=>:transactions
+#       get ':id/accounts/:account_id/transactions/:tran_id' , :action=>:show_transaction
+#       get ':id/accounts/:account_id/transaction_sets' , :action=>:transaction_sets
+#       post '/' , :action=> :create_client
+#       get ':id/payables' ,:action => :payables
+#       get ':id/payable_items' ,:action => :payable_items
+#       get ':id/payables/:payable_id' ,:action => :show_payable
+#     end
+
 require 'test_helper'
 
 class TestMpayerClient < Minitest::Test

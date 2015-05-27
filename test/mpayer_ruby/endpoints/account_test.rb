@@ -1,3 +1,14 @@
+#     namespace 'accounts' do
+#       get '/', :action=>:index
+#       get 'all_accounts' ,:action=>:all_accounts
+#       get 'aggregates' ,:action=>:aggregates
+#       get ':id', :action=>:show
+#       put ':id' ,:action=>:update
+#       get ':id/payable_items' ,:action => :payable_items
+#       post ':id/enroll' ,:action=>:enroll
+#       get ':id/members' ,:action=>:account_holders
+#     end
+
 require 'test_helper'
 
 class TestMpayerAccount < Minitest::Test

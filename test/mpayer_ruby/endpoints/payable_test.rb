@@ -1,3 +1,16 @@
+#     namespace 'payables' do
+#       get '/' , :action=>:index
+#       get '/all' , :action=>:all
+#       get '/:id' , :action=>:show
+#       get '/search/:ref_id',:action=>:search
+#       delete '/:id' , :action => :destroy
+#       post '/' , :action => :create
+#       post '/update_flags' , :action => :bulk_update_flags
+#       # post 'add_to/:id' , :action => :add_payable_item
+#       # delete 'remove/:id/item/:item_id' , :action=>:remove_payable_item
+#       # put '/:id' , :action => :update
+#     end
+
 require 'test_helper'
 
 class TestMpayerPayable < Minitest::Test

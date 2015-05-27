@@ -2,8 +2,8 @@ module Mpayer
 	class Configuration
 		attr_accessor :user_no, :token, :base_url
 
-    def initialize(user_no:nil,token:nil)
-    	@base_url = 'https://app.mpayer.co.ke/api/'
+    def initialize(user_no:nil,token:nil,base_url:'https://app.mpayer.co.ke/api/')
+    	@base_url ||= base_url 
     	@user_no ||= user_no
     	@token ||= token
     end
@@ -13,7 +13,7 @@ module Mpayer
     end
 
     def header
-		  {'Content-Type'=> 'application/json', 'Accept' => 'application/json', 'X-WSSE' => auth }
+		  {'Content-Type'=> 'application/json', 'Accept' => 'application/json', 'X-WSSE' => auth.to_s}
     end
 
 	end	

@@ -22,7 +22,7 @@ module Mpayer
 			def create(options={})
 				url = "/clients"
 				response = Mpayer::Fetch.post(url,body: options.to_json)
-				client = new(options.merge!(id:response.id ,response:response))
+				client = new(options.merge!(id:response.id ,response:response, account: response.account.first))
 			end	
 
 		end
@@ -30,7 +30,7 @@ module Mpayer
 		# Mpayer::Client.find(id:20284).account(accountsid)
 		def account(account_id=nil,client_id=id)
 			account_id ||= @account.id rescue nil
-			raise ArgumentError if client_id.nil? or account_id.nil?
+			raise "Arguments missing: account_id or client_id" if client_id.nil? or account_id.nil?
 			url = "/clients/#{client_id}/accounts/#{account_id}"
 			if (@account.id == account_id rescue false)
 				@account ||= Mpayer::Fetch.get(url)
