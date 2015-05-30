@@ -14,10 +14,6 @@
 require 'test_helper'
 
 class TestMpayerPayable < Minitest::Test
-	def setup
-		payable = nil
-		super
-	end
 
 	def test_payable_find_and_all
 		# skip
@@ -30,50 +26,28 @@ class TestMpayerPayable < Minitest::Test
 
 	def test_search_payable
 		# skip
-		payable = Mpayer::Payable.where(ref_id:"KT0041-010000411")
+		search_ref = create_payable.ref_id
+		payable = Mpayer::Payable.where(ref_id:search_ref)
 		refute_nil(payable, "Failure message.")
 		assert(payable.is_a?(Mpayer::Payable), "Failure message.")
 		payable = Mpayer::Payable.where(ref_id:"Ksdfsfsdf000411")
 		assert_nil(payable, "Failure message.")
 	end
 
-	def test_create_and_destroy_payable
+	def test_create_payable
 		# skip
-		payable_items = []
-		[*0..5].each do |n|
-			payable_items << {
-				payment_party: 'pz_test' ,
-				terminal_ac: 'pz_test2' ,
-				details: "paying to test account" ,
-				amount: 10,
-				price: 10,
-				unit_measure: 1.0
-			}
-		end
+		payable = create_payable
+		refute_nil(payable.id, "Failure message.#{payable.response}")
+	end
 
-    options = {
-    	payment: {
-    		payable_no: rand(10000), 
-    		note: "payable to pay something",
-    		ref_id:rand(10000),
-    		# client_id: client_id, 
-    		# status: @model.status,
-    		# payable_type: @model.payable_type,
-    		due_date: Time.now+(86400*31), 
-    		pay: payable_items
-    		# tags:@tags,
-    		# flags:@flags,
-    		# infos:@infos ,
-    		# sync_lag:@sync_lag
-    		}
-    	}
-    payable = Mpayer::Payable.create(options)
-		refute_nil(payable.id, "Failure message.")
-
-		payable = Mpayer::Payable.find(8818,fetch:false)
+	def test_destroy_payable
+		# skip
+		payable = create_payable
 		payable.destroy
 		assert_equal(payable.id, nil)
 		assert_equal(payable.attributes, nil)
+		@@create_payable = nil
+		@@search_payable = nil
 	end
 
 end

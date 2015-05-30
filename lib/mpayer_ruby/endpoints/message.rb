@@ -6,7 +6,7 @@ module Mpayer
 			# Mpayer::Message.create(message_attributes)
 			def create(options={})
 				url = "/messages"
-				response = Mpayer::Fetch.post(url,body: options.to_json)
+				response = Mpayer::Fetch.post(url,options)
 				message = new(options.merge!(id:response.id ,response:response))
 			end
 

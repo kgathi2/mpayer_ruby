@@ -13,4 +13,9 @@ class TestMpayer < Minitest::Test
 		assert_equal(client.config.user_no, 'GLOBAL_USER')
 		assert_equal(client.config.token, 'GLOBAL_TOKEN')
 	end
+
+	def test_login
+		credentials = Mpayer.login
+		assert(credentials.token, "Failure message.")
+	end
 end

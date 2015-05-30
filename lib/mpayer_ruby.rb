@@ -34,7 +34,7 @@ module Mpayer
     end
 
     def login
-     Mpayer::Fetch.post('/login',post: {user_no: ENV['MPAYER_USER'],password:ENV['MPAYER_PASSWORD']}.to_json)
+     Mpayer::Fetch.post('/login',{user: ENV['MPAYER_USER'],password:ENV['MPAYER_PASSWORD']})
    end
  end
 

@@ -5,9 +5,9 @@ module Mpayer
 		class << self
 
 			# Mpayer::Client.all
-			def all(per:1,per_page:100)
+			def all(page:1,per_page:100)
 			  url = "/clients/all_clients"
-				Mpayer::Fetch.get(url,query:{per:per,per_page:per_page})
+				Mpayer::Fetch.get(url,query:{page:page,per_page:per_page})
 			end
 
 			# Mpayer::Client.find(id)
@@ -21,7 +21,8 @@ module Mpayer
 			# Mpayer::Client.create(client_attributes)
 			def create(options={})
 				url = "/clients"
-				response = Mpayer::Fetch.post(url,body: options.to_json)
+				# bp
+				response = Mpayer::Fetch.post(url,options)
 				client = new(options.merge!(id:response.id ,response:response, account: response.account.first))
 			end	
 
@@ -43,22 +44,22 @@ module Mpayer
 		# Mpayer::Client.find(id:20284).create_account(options)
 		def create_account(options={})
       url = "/clients/#{self.id}/accounts/new"
-			@account = Mpayer::Fetch.post(url,body: options.to_json)
+			@account = Mpayer::Fetch.post(url,options)
 		end
 
-		# Mpayer::Client.find(26, fetch:false).accounts(per:1,per_page:100)
-		def accounts(per:1,per_page:100)
-			find_all(per:per,per_page:per_page)
+		# Mpayer::Client.find(26, fetch:false).accounts(page:1,per_page:100)
+		def accounts(page:1,per_page:100)
+			find_all(page:page,per_page:per_page)
 		end
 
-		# Mpayer::Client.find(26, fetch:false).payables(per:1,per_page:100)
-		def payables(per:1,per_page:100)
-			find_all(per:per,per_page:per_page)
+		# Mpayer::Client.find(26, fetch:false).payables(page:1,per_page:100)
+		def payables(page:1,per_page:100)
+			find_all(page:page,per_page:per_page)
 		end
 
-		# Mpayer::Client.find(26, fetch:false).transactions(account_id, per:1,per_page:100)
-		def transactions(account_id,per:1,per_page:100)
-			find_all(per:per,per_page:per_page,account_id:account_id)
+		# Mpayer::Client.find(26, fetch:false).transactions(account_id, page:1,per_page:100)
+		def transactions(account_id,page:1,per_page:100)
+			find_all(page:page,per_page:per_page,account_id:account_id)
 		end
 
     protected

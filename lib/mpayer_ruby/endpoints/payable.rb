@@ -4,9 +4,9 @@ module Mpayer
 		class << self
 
 			# Mpayer::Payable.all
-			def all(per:1,per_page:100)
+			def all(page:1,per_page:100)
 				url = "/payables/all"
-				Mpayer::Fetch.get(url,query:{per:per,per_page:per_page})
+				Mpayer::Fetch.get(url,query:{page:page,per_page:per_page})
 			end
 
 			# Mpayer::Payable.find(id)
@@ -18,7 +18,7 @@ module Mpayer
 
 			# Mpayer::Payable.where(ref_id:"KT0041[P]-010000402")
 			def where(ref_id:,fetch:true)
-				url = "/payables/search/#{CGI.escape(ref_id)}"
+				url = "/payables/search/#{CGI.escape(ref_id.to_s)}"
 				response = Mpayer::Fetch.get(url) if fetch
 				payable = new(id:response.id,response:response) unless (response.id rescue nil).nil?
 			end
@@ -26,7 +26,7 @@ module Mpayer
 			# Mpayer::Payable.create(options)
 			def create(options={})
 				url = "/payables"
-				response = Mpayer::Fetch.post(url,body: options.to_json)
+				response = Mpayer::Fetch.post(url,options)
 				payable_id = response.id 
 				payable = new(options.merge!(id:payable_id,response:response))
 			end

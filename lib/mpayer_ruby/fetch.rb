@@ -14,9 +14,10 @@ module Mpayer
 
 			%w(get put post delete).each do |m|
 				define_method m do |path, options={}, &block|
+					options = {body: options.to_json}
 					res = perform_request Net::HTTP::Put, path, options, &block if m == 'put'
-					res = perform_request Net::HTTP::Get, path, options, &block if m == 'get'
 					res = perform_request Net::HTTP::Post, path, options, &block if m == 'post'
+					res = perform_request Net::HTTP::Get, path, options, &block if m == 'get'
 					res = perform_request Net::HTTP::Delete, path, options, &block if m == 'delete'
 					save_json(res) if load_json?
 					res
@@ -26,7 +27,7 @@ module Mpayer
 			def save_json(response)
 				request_method = response.request.http_method.name.split('::').last.upcase
 				file_path = response.request.path.to_s
-				slash,model,*file_name = file_path.split(/\/|\?/)
+				slash,model,*file_name = file_path.split('?')[0].split(/\/|\?/)
 				file_location = "lib/mpayer_ruby/support/fake_mpayer/#{model}/#{request_method}_#{file_name.join('_')}.json"
 				File.write(file_location, response.body)
 			end

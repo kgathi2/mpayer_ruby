@@ -12,7 +12,7 @@ class TestMpayerFakeMpayer < Minitest::Test
 	def save_json(response)
 		request_method = response.request.http_method.name.split('::').last.upcase
 		file_path = response.request.path.to_s
-		slash,model,*file_name = file_path.split(/\/|\?/)
+		slash,model,*file_name = file_path.split('?')[0].split(/\/|\?/)
 		file_location = "lib/mpayer_ruby/support/fake_mpayer/#{model}/#{request_method}_#{file_name.join('_')}.json"
 		File.write(file_location, response.body)
 	end
@@ -36,7 +36,7 @@ end
 # def save_json(response)
 # 	request_method = response.request.http_method.name.split('::').last.upcase
 # 	file_path = response.request.path.to_s
-# 	slash,model,*file_name = file_path.split(/\/|\?/)
+# 	slash,model,*file_name = file_path.split('?')[0].split(/\/|\?/)
 # 	file_location = "lib/mpayer_ruby/support/fake_mpayer/#{model}/#{request_method}_#{file_name.join('_')}.json"
 # 	File.write(file_location, response.body)
 # end
