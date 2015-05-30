@@ -33,8 +33,8 @@ module Mpayer
       yield(configuration)
     end
 
-    def login
-     Mpayer::Fetch.post('/login',{user: ENV['MPAYER_USER'],password:ENV['MPAYER_PASSWORD']})
+    def login(user:ENV['MPAYER_USER'],password:ENV['MPAYER_PASSWORD'])
+     Mpayer::Fetch.post('/login',{user: user,password:password})
    end
  end
 
