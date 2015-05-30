@@ -32,16 +32,16 @@ module Mpayer
 		end
 
 		# Use this methon in the association reader method witht the same name
-		def find_all(per:1,per_page:100,**options)
+		def find_all(page:1,per_page:100,**options)
 			# gets caller methods as association
 			association =  caller_locations(1,1)[0].label 
 			url = assoc_link(association.to_sym,options)
-			if self.pagination[association]=={per_page:per_page,per:per} 
-				self.send("#{association}=", Mpayer::Fetch.get(url,query:{per:per,per_page:per_page}) ) if instance_variable_get("@#{association}").nil?
+			if self.pagination[association]=={per_page:per_page,page:page} 
+				self.send("#{association}=", Mpayer::Fetch.get(url,query:{page:page,per_page:per_page}) ) if instance_variable_get("@#{association}").nil?
 			else
-				self.send("#{association}=", Mpayer::Fetch.get(url,query:{per:per,per_page:per_page}) )
+				self.send("#{association}=", Mpayer::Fetch.get(url,query:{page:page,per_page:per_page}) )
 			end
-			self.pagination.merge!({"#{association}":{per:per,per_page:per_page}})
+			self.pagination.merge!({"#{association}":{page:page,per_page:per_page}})
 			return instance_variable_get("@#{association}")
 		end
 

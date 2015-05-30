@@ -5,16 +5,16 @@ module Mpayer
 		class << self
 
 			# Mpayer::Account.all()
-			def all(per:1,per_page:100)
+			def all(page:1,per_page:100)
 				url = "/accounts/all_accounts"
-				Mpayer::Fetch.get(url,query:{per:per,per_page:per_page})
+				Mpayer::Fetch.get(url,query:{page:page,per_page:per_page})
 			end
 
 			# options = {from_date:nil,to_date:nil, dr_cr:nil, ac_type:nil, category:nil}
 			# Mpayer::Account.aggregate(options)
-			def aggregates(per:1,per_page:100, **options)
+			def aggregates(page:1,per_page:100, **options)
 				url = "/accounts/aggregates"
-				Mpayer::Fetch.get(url,query:{per:per,per_page:per_page}.merge!(options))
+				Mpayer::Fetch.get(url,query:{page:page,per_page:per_page}.merge!(options))
 			end
 
 			# Mpayer::Account.find(account_id)
@@ -29,7 +29,7 @@ module Mpayer
 		# account.update(name:new_name)
 		def update(options)
 			url = "/accounts/#{self.id}"
-			response = Mpayer::Fetch.put(url,body: options.to_json)
+			response = Mpayer::Fetch.put(url,options)
 			self.response = response
 		end
 
@@ -37,14 +37,14 @@ module Mpayer
 			
 		end
 
-		# Mpayer::Account.find(26, fetch:false).members(per:1,per_page:100)
-		def members(per:1,per_page:100)
-			find_all(per:per,per_page:per_page)
+		# Mpayer::Account.find(26, fetch:false).members(page:1,per_page:100)
+		def members(page:1,per_page:100)
+			find_all(page:page,per_page:per_page)
 		end
 
-		# Mpayer::Account.find(26, fetch:false).payable_items(per:1,per_page:100)
-		def payable_items(per:1,per_page:100)
-			find_all(per:per,per_page:per_page)
+		# Mpayer::Account.find(26, fetch:false).payable_items(page:1,per_page:100)
+		def payable_items(page:1,per_page:100)
+			find_all(page:page,per_page:per_page)
 		end
 
 		protected

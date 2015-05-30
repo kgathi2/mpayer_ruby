@@ -40,6 +40,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "coveralls", '~> 0'
   spec.add_development_dependency "webmock", '~> 1.21'
   spec.add_development_dependency "sinatra", '~> 1.4'
+  spec.add_development_dependency "faker", '~> 1.4'
 
   spec.add_dependency 'httparty', "~> 0.13"
   spec.add_dependency 'wsse', "~> 0.0"

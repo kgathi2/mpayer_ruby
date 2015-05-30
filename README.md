@@ -55,7 +55,7 @@ Mpayer.setup do |config|
 end
 
 #Get all clients in your organisation
-clients = Mpayer::Client.all(per:1,per_page:100)
+clients = Mpayer::Client.all(page:1,per_page:100)
 
 #Get one client in your organisation
 clients = Mpayer::Client.find(123)
@@ -78,7 +78,7 @@ https://app.mpayer.co.ke/api/payables
 All responses are objects and can be accessed with dot notation
 e.g 
 ```ruby
-clients = Mpayer::Client.all(per:1,per_page:100) 
+clients = Mpayer::Client.all(page:1,per_page:100) 
 client = client.first
 client.name #=> "CLark Kent"
 ```
@@ -97,9 +97,9 @@ client = Mpayer::Client.find(id:20284,fetch:false).account(account_id) # Get cli
 client = Mpayer::Client.find(id:20284,fetch:false)
 account = client.account(account_id) # Get clients account with id
 
-client_accounts = Mpayer::Client.find(id:20284,fetch:false).accounts(per:1,per_page:100)
-client_payables = Mpayer::Client.find(id:20284,fetch:false).payables(per:1,per_page:100)
-client_transactions = Mpayer::Client.find(id:20284,fetch:false).transactions(account_id, per:1,per_page:100)
+client_accounts = Mpayer::Client.find(id:20284,fetch:false).accounts(page:1,per_page:100)
+client_payables = Mpayer::Client.find(id:20284,fetch:false).payables(page:1,per_page:100)
+client_transactions = Mpayer::Client.find(id:20284,fetch:false).transactions(account_id, page:1,per_page:100)
 
 ```
 
@@ -195,9 +195,9 @@ Mpayer.setup do |config|
 end
 
 url = "/clients/all_clients"
-Mpayer::Fetch.get(url,query:{per:per,per_page:per_page})
-Mpayer::Fetch.post(url,body:{client:{name:'Kiki Lolo'}}.to_json)
-Mpayer::Fetch.put(url,body:{client:{name:'Kiki Lolo'}}.to_json)
+Mpayer::Fetch.get(url,query:{page:page,per_page:per_page})
+Mpayer::Fetch.post(url,{client:{name:'Kiki Lolo'}})
+Mpayer::Fetch.put(url,{client:{name:'Kiki Lolo'}})
 Mpayer::Fetch.delete(url)
 
 ```

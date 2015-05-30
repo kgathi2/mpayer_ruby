@@ -8,7 +8,7 @@ class FakeMpayer < Sinatra::Base
       if (request.env['HTTP_X_WSSE'].empty? rescue true)
         [200, {}, [{base:["Authentication Failed"]}.to_json]]
       else
-        slash,api,model,*path = request.path_info.split('/')
+        slash,api,model,*path = request.path_info.split('?')[0].split(/\/|\?/)
         json_response 200, "#{model}/#{request.request_method}_#{path.join('_')}.json"
       end
     end

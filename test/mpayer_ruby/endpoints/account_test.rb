@@ -1,23 +1,29 @@
+#     namespace 'accounts' do
+#       get '/', :action=>:index
+#       get 'all_accounts' ,:action=>:all_accounts
+#       get 'aggregates' ,:action=>:aggregates
+#       get ':id', :action=>:show
+#       put ':id' ,:action=>:update
+#       get ':id/payable_items' ,:action => :payable_items
+#       post ':id/enroll' ,:action=>:enroll
+#       get ':id/members' ,:action=>:account_holders
+#     end
+
 require 'test_helper'
 
 class TestMpayerAccount < Minitest::Test
-	def setup
-		account = nil
-		super
-	end
 
 	def test_account_find_and_all
 		# skip
-		accounts = Mpayer::Account.all
+		accounts = get_accounts
 		assert(accounts.is_a? Array)
-		account_one = accounts.first
-		account = Mpayer::Account.find(account_one.id)
+		account = get_account
 		assert(account.is_a? Mpayer::Account)
 	end
 
 	def test_update_account
 		# skip
-		account = Mpayer::Account.find(25735)
+		account = get_account
 		new_name = account.name.next
 		updated_account = account.update(name:new_name)
 		assert_equal(new_name, account.name)
@@ -38,13 +44,13 @@ class TestMpayerAccount < Minitest::Test
 
 	def test_get_client_members
 		# skip 
-		members = Mpayer::Account.find(25735, fetch:false).members
+		members = get_account.members
 		assert(members.is_a?(Array), "Failure message.")
 	end
 
 	def test_get_client_payable_items
 		# skip 
-		payable_items = Mpayer::Account.find(25735, fetch:false).payable_items
+		payable_items = get_account.payable_items
 		assert(payable_items.is_a?(Array), "Failure message.")
 	end
 end
