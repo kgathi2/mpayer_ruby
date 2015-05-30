@@ -32,7 +32,7 @@ export MPAYER_TOKEN=<Your token>
 ```
 
 ## Configurations
-To configure credentials locally on you code use config block below. For Rails, put this in `config/initializers/mpayer.rb`
+To configure credentials for your API calls on you code use config block below. For Rails, put this in `config/initializers/mpayer.rb`
 
 ```ruby
 Mpayer.setup do |config|
@@ -67,6 +67,8 @@ clients = Mpayer::Client.find(123, fetch:false)
 ## Endpoints
 Mpayer gem currently supports a few endpoint below 
 
+https://app.mpayer.co.ke/api/login
+
 https://app.mpayer.co.ke/api/client
 
 https://app.mpayer.co.ke/api/accounts
@@ -81,6 +83,17 @@ e.g
 clients = Mpayer::Client.all(page:1,per_page:100) 
 client = client.first
 client.name #=> "CLark Kent"
+```
+
+### Login
+Login give you your organisations settings and credentials. 
+YOu need to have set up t
+```ruby
+login = Mpayer.login 
+# defaults are picked from user:ENV['MPAYER_USER'],password:ENV['MPAYER_PASSWORD']
+
+login = Mpayer.login(user:'james@bond.com', password: "bond..james bond")
+
 ```
 
 ### Client
