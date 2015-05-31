@@ -13,6 +13,20 @@ class TestMpayerEndPoint < Minitest::Test
 		
 	end
 
+	def test_id_cant_be_initialised_with_nil
+		assert_raises(Exception) { Mpayer::Endpoint.new(id:nil) }
+		assert_raises(Exception) { Mpayer::Endpoint.new.id=nil }
+		assert_raises(Exception) { Mpayer::Client.find(nil, fetch:false) }
+	end
+
+	def test_delete_object
+		endpoint = Mpayer::Endpoint.new(id:1)
+		assert(endpoint, "Failure message.")
+		endpoint.send(:kill)
+		assert_equal(endpoint.id, nil)
+		assert(endpoint.frozen?, 'Object has need deleted')
+	end
+
 	def test_missing_methods
 		client = Mpayer::Client.find(23,fetch:false)
 		client.response = Hashie::Mash.new({email:'kiki@lolo.com', name:'Kiki Lolo'})

@@ -15,7 +15,17 @@ module Mpayer
 	    after_initialize
 		end
 
+		def id=(value)
+			raise Exception, "Mpayer Object ID cannot be nil" if value.nil? and attributes.deleting.nil?
+			@id = value
+		end
+
 		protected
+
+		def kill
+			instance_variables.each{|var| instance_variable_set(var,nil)}
+			freeze
+		end
 
 		# after_initialize{ @endpoint = 'clients'}
 		# class << self
