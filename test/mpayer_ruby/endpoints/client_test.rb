@@ -4,12 +4,12 @@
 #       get ':id', :action=>:show
 #       put ':id', :action=>:update
 #       get ':id/accounts' , :action=>:accounts
-#       post ':id/accounts/new' , :action=>:create_account
+#       post ':id/accounts/new' , :action=>:create_mpayer_account
 #       get ':id/accounts/:account_id' , :action=>:show_account
 #       get ':id/accounts/:account_id/transactions' , :action=>:transactions
 #       get ':id/accounts/:account_id/transactions/:tran_id' , :action=>:show_transaction
 #       get ':id/accounts/:account_id/transaction_sets' , :action=>:transaction_sets
-#       post '/' , :action=> :create_client
+#       post '/' , :action=> :create_mpayer_client
 #       get ':id/payables' ,:action => :payables
 #       get ':id/payable_items' ,:action => :payable_items
 #       get ':id/payables/:payable_id' ,:action => :show_payable
@@ -28,15 +28,15 @@ class TestMpayerClient < Minitest::Test
 		assert(client.is_a? Mpayer::Client)
 	end
 
-	def test_create_client
+	def test_create_mpayer_client
 		# skip skip
-		client = create_client
+		client = create_mpayer_client
 		refute_nil(client.id, "Failure message.")
 	end
 
 	def test_get_client_account
 		# skip
-		client = create_client
+		client = create_mpayer_client
 		accounts = client.accounts(page:1,per_page:100)
 		account = client.account(accounts.last.id)
 		assert(account.is_a?(Hash), "Failure message.")
@@ -44,23 +44,23 @@ class TestMpayerClient < Minitest::Test
 
 	def test_create_new_account
 		# skip
-		account = create_account
+		account = create_mpayer_account
 		refute_nil(account, "Failure message.")
 	end
 
 	def test_get_client_accounts_and_transactions
 		# skip
-		accounts = create_client.accounts
+		accounts = create_mpayer_client.accounts
 		assert(accounts.is_a?(Array), "Failure message.")
 
 		account_id = accounts.last.id
-		transactions = create_client.transactions(account_id)
+		transactions = create_mpayer_client.transactions(account_id)
 		assert(transactions.is_a?(Array), "Failure message.")
 	end
 
 	def test_get_client_payables
 		# skip
-		accounts = create_client.payables
+		accounts = create_mpayer_client.payables
 		assert(accounts.is_a?(Array), "Failure message.")
 	end
 

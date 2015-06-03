@@ -15,15 +15,15 @@ class TestMpayerAccount < Minitest::Test
 
 	def test_account_find_and_all
 		# skip
-		accounts = get_accounts
+		accounts = get_mpayer_accounts
 		assert(accounts.is_a? Array)
-		account = get_account
+		account = get_mpayer_account
 		assert(account.is_a? Mpayer::Account)
 	end
 
 	def test_update_account
 		# skip
-		account = get_account
+		account = get_mpayer_account
 		new_name = account.name.next
 		updated_account = account.update(name:new_name)
 		assert_equal(new_name, account.name)
@@ -44,13 +44,13 @@ class TestMpayerAccount < Minitest::Test
 
 	def test_get_client_members
 		# skip 
-		members = get_account.members
+		members = get_mpayer_account.members
 		assert(members.is_a?(Array), "Failure message.")
 	end
 
 	def test_get_client_payable_items
 		# skip 
-		payable_items = get_account.payable_items
+		payable_items = get_mpayer_account.payable_items
 		assert(payable_items.is_a?(Array), "Failure message.")
 	end
 end

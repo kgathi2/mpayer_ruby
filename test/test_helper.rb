@@ -3,7 +3,7 @@ require 'coveralls'
 Coveralls.wear!
 
 require 'mpayer_ruby'
-require 'mpayer_ruby/test_helper'
+require 'mpayer_ruby/support/test_helper'
 require 'minitest'
 require 'minitest/unit'
 require 'minitest/autorun'
@@ -12,7 +12,6 @@ require 'minitest/reporters' # requires the gem
 require 'pry'
 require "pry-alias"
 require 'faker'
-
 
 # ENV['LOAD_MPAYER'] = "true"
 
@@ -42,16 +41,14 @@ class Minitest::Test
     # stub_request(:get, "https://app.mpayer.co.ke/api/clients/12345").
     # with(:headers => {'Accept'=>'application/json', 'Content-Type'=>'application/json', 'X-Wsse'=>''}).
     # to_return(:status => 200, :body => {base:["Authentication Failed"]}.to_json, :headers => {})
-    # login
-    # create_client
-    # create_account
-    # create_payable
-    # create_transaction
-    # get_accounts
-    # get_account
+    # mpayer_login
+    # create_mpayer_client
+    # create_mpayer_account
+    # create_mpayer_payable
+    # get_mpayer_accounts
+    # get_mpayer_account
+    # create_mpayer_transaction
+    # get_mpayer_transactions
 	end
-
-	
-
 
 end
