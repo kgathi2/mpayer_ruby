@@ -20,6 +20,10 @@ module Mpayer
 			@id = value
 		end
 
+		def success?
+			!response.code.to_s.match(/\A2\d+/).to_s.empty? rescue false
+		end
+
 		protected
 
 		def kill

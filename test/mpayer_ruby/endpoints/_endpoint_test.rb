@@ -46,4 +46,11 @@ class TestMpayerEndPoint < Minitest::Test
 		payables_link = client.send(:assoc_link,:payables)
 		assert_equal( "/clients/26/payables", payables_link)
 	end
+
+	def test_success?
+		client = Mpayer::Client.new
+		refute(client.success?, "Failure message.")
+		client = create_mpayer_client
+		assert(client.success?, "Failure message.")
+	end
 end
