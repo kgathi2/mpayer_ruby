@@ -17,26 +17,26 @@ class TestMpayerTransaction < Minitest::Test
 		super
 	end
 
-	# def get_transactions
+	# def get_mpayer_transactions
 	# 	@transactions ||= Mpayer::Transaction.all(from: Time.now -  (86400*400))
-	# 	@transactions.any? ? @transactions : [create_transaction]
+	# 	@transactions.any? ? @transactions : [create_mpayer_transaction]
 	# end
 
-	# def create_transaction
-	# 	body = {particulars:Faker::Lorem.sentence,amount:1000, cr_party: create_account.acid}
+	# def create_mpayer_transaction
+	# 	body = {particulars:Faker::Lorem.sentence,amount:1000, cr_party: create_mpayer_account.acid}
  #    body.merge!({ref_num:Faker::Code.isbn})
 	# 	Mpayer::Transaction.deposit(body)
 	# end
 
 	def test_get_all_transactions
 		# skip
-		transactions = get_transactions
+		transactions = get_mpayer_transactions
 		assert(transactions.is_a?(Array), "Failure message.")
 	end
 
 	def test_search_transactions
 		# skip
-		search_ref = create_transaction.ref_id
+		search_ref = create_mpayer_transaction.ref_id
 		transaction = Mpayer::Transaction.where(ref_id:search_ref)
 		refute_nil(transaction, "Failure message.")
 		assert(transaction.is_a?(Mpayer::Transaction), "Failure message.")
@@ -44,14 +44,14 @@ class TestMpayerTransaction < Minitest::Test
 
 	def test_deposit
 		# skip
-		deposit = create_transaction
+		deposit = create_mpayer_transaction
 		assert(deposit.is_a?(Mpayer::Transaction), "Failure message.")
 		refute_nil(deposit.id, "Failure message. #{deposit.response.body}")
 	end
 
 	def test_withdraw
 		# skip
-		body = {particulars:Faker::Lorem.sentence,amount:10, dr_party: create_account.acid}
+		body = {particulars:Faker::Lorem.sentence,amount:10, dr_party: create_mpayer_account.acid}
 		withdrawal = Mpayer::Transaction.withdraw(body)
 		assert(withdrawal.is_a?(Mpayer::Transaction), "Failure message.")
 		refute_nil(withdrawal.id, "Failure message.#{withdrawal.response.body}")
@@ -59,7 +59,7 @@ class TestMpayerTransaction < Minitest::Test
 
 	def test_transfer
 		# skip
-		body = {particulars:Faker::Lorem.sentence,amount:10, cr_party: create_account.acid, dr_party:create_account.acid }
+		body = {particulars:Faker::Lorem.sentence,amount:10, cr_party: create_mpayer_account.acid, dr_party:create_mpayer_account.acid }
 		transfer = Mpayer::Transaction.transfer(body)
 		assert(transfer.is_a?(Mpayer::Transaction), "Failure message.")
 		refute_nil(transfer.id, "Failure message.#{transfer.response.body}")
@@ -73,7 +73,7 @@ class TestMpayerTransaction < Minitest::Test
 
 	def test_transactions_with_alias
 		# skip
-		body = {particulars:Faker::Lorem.sentence,amount:1000, cr_party: create_account.aliases.first.alias_value}
+		body = {particulars:Faker::Lorem.sentence,amount:1000, cr_party: create_mpayer_account.aliases.first.alias_value}
 		deposit = Mpayer::Transaction.deposit(body)
 		assert(deposit.is_a?(Mpayer::Transaction), "Failure message.")
 		refute_nil(deposit.id, "Failure message.#{deposit.response.body}")

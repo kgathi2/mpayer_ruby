@@ -35,7 +35,7 @@ module Mpayer
 		def destroy
 			url = "/payables/#{self.id}"
 			self.response = Mpayer::Fetch.delete(url)
-			self.id, self.attributes = nil, nil
+			self.kill
 		end
 
 		protected

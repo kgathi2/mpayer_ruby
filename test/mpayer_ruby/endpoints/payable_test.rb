@@ -26,7 +26,7 @@ class TestMpayerPayable < Minitest::Test
 
 	def test_search_payable
 		# skip
-		search_ref = create_payable.ref_id
+		search_ref = create_mpayer_payable.ref_id
 		payable = Mpayer::Payable.where(ref_id:search_ref)
 		refute_nil(payable, "Failure message.")
 		assert(payable.is_a?(Mpayer::Payable), "Failure message.")
@@ -34,19 +34,19 @@ class TestMpayerPayable < Minitest::Test
 		assert_nil(payable, "Failure message.")
 	end
 
-	def test_create_payable
+	def test_create_mpayer_payable
 		# skip
-		payable = create_payable
+		payable = create_mpayer_payable
 		refute_nil(payable.id, "Failure message.#{payable.response}")
 	end
 
 	def test_destroy_payable
 		# skip
-		payable = create_payable
+		payable = create_mpayer_payable
 		payable.destroy
 		assert_equal(payable.id, nil)
 		assert_equal(payable.attributes, nil)
-		@@create_payable = nil
+		@@create_mpayer_payable = nil
 		@@search_payable = nil
 	end
 

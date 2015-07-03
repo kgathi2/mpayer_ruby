@@ -86,8 +86,7 @@ client.name #=> "CLark Kent"
 ```
 
 ### Login
-Login give you your organisations settings and credentials. 
-YOu need to have set up t
+Login provides your organisations settings and credentials.
 ```ruby
 login = Mpayer.login 
 # defaults are picked from user:ENV['MPAYER_USER'],password:ENV['MPAYER_PASSWORD']
