@@ -2,6 +2,7 @@ require 'sinatra/base'
 require 'tilt/erb'
 
 class FakeMpayer < Sinatra::Base
+set :dump_errors, false
 
   [ :get, :post, :put, :delete ].each do |method|
     send method, /.*/ do 
