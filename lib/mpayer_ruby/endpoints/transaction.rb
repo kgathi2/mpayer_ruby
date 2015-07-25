@@ -15,7 +15,7 @@ module Mpayer
 			def where(ref_id:,fetch:true)
 				url = "/transactions/#{CGI.escape(ref_id.to_s)}"
 				response = Mpayer::Fetch.get(url) if fetch
-				transaction = new(id:response.id,response:response)
+				transaction = new(id:response.id,response:response) rescue response
 			end
 
       # body = {particulars:particulars,ref_id:mpayer_ref_id,amount:amount, cr_party: cr_party}
@@ -23,7 +23,7 @@ module Mpayer
 			def deposit(**options)
 				url = "/transactions/deposit"
 				response = Mpayer::Fetch.put(url,mpayer_refs.merge!(options))
-				transaction = new(id:response.id,response:response)
+				transaction = new(id:response.id,response:response) rescue response
 			end
 
       # body = {particulars:particulars,ref_id:mpayer_ref_id,amount:amount,dr_party: dr_party}
@@ -31,7 +31,7 @@ module Mpayer
 			def withdraw(**options)
 				url = "/transactions/withdraw"
 				response = Mpayer::Fetch.delete(url,mpayer_refs.merge!(options))
-				transaction = new(id:response.id,response:response)
+				transaction = new(id:response.id,response:response) rescue response
 			end
 
       # body = {particulars:particulars,ref_id:mpayer_ref_id,amount:amount,dr_party: dr_party, cr_party: cr_party}
@@ -39,7 +39,7 @@ module Mpayer
 			def transfer(**options)
 				url = "/transactions/transfer"
 				response = Mpayer::Fetch.post(url,mpayer_refs.merge!(options))
-				transaction = new(id:response.id,response:response)
+				transaction = new(id:response.id,response:response) rescue response
 			end
 
 			# Integrating app should get this from their db or just random unique

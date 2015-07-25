@@ -20,15 +20,14 @@ module Mpayer
 			def where(ref_id:,fetch:true)
 				url = "/payables/search/#{CGI.escape(ref_id.to_s)}"
 				response = Mpayer::Fetch.get(url) if fetch
-				payable = new(id:response.id,response:response) unless (response.id rescue nil).nil?
+				payable = new(id:response.id,response:response) rescue response
 			end
 
 			# Mpayer::Payable.create(options)
 			def create(options={})
 				url = "/payables"
 				response = Mpayer::Fetch.post(url,options)
-				payable_id = response.id 
-				payable = new(options.merge!(id:payable_id,response:response))
+				payable = new(options.merge!(id:response.id ,response:response)) rescue response
 			end
 		end
 

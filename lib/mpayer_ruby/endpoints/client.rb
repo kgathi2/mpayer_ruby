@@ -23,7 +23,7 @@ module Mpayer
 				url = "/clients"
 				# bp
 				response = Mpayer::Fetch.post(url,options)
-				client = new(options.merge!(id:response.id ,response:response, account: response.account.first))
+				client = new(options.merge!(id:response.id ,response:response, account: response.account.first)) rescue response
 			end	
 
 		end

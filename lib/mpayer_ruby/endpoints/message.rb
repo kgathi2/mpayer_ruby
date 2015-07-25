@@ -7,7 +7,7 @@ module Mpayer
 			def create(options={})
 				url = "/messages"
 				response = Mpayer::Fetch.post(url,options)
-				message = new(options.merge!(id:response.id ,response:response))
+				message = new(options.merge!(id:response.id ,response:response)) rescue response
 			end
 
 		end
