@@ -102,7 +102,7 @@ clients = Mpayer::Client.all
 client = Mpayer::Client.find(id)  #Instantiates and hits the api
 client = Mpayer::Client.find(id, fetch:false) #Instantiates only
 
-client_attributes = {client: { client_name: "Kiki Lolo", client_birthday: Time.now.iso8601, client_type: "ext", ac_type: "cu",client_mobile: '0733222222', client_email: 'lolo@kiki.com',currency: "kes", mandate:"s", sub_type: "od" }}
+client_attributes = {client: { client_name: "Kiki Lolo", client_birthday: Time.zone.now.iso8601, client_type: "ext", ac_type: "cu",client_mobile: '0733222222', client_email: 'lolo@kiki.com',currency: "kes", mandate:"s", sub_type: "od" }}
 client = Mpayer::Client.create(client_attributes)
 
 client = Mpayer::Client.find(id:20284,fetch:false).account(account_id) # Get clients account with id
@@ -125,7 +125,7 @@ account = Mpayer::Account.find(1, fetch:false) #Instantiates only
 account = Mpayer::Account.find(1, fetch:false)
 account.update(name:'Lolo Kiki')
 
-options = {from_date: Time.now -  (86400*365),to_date:nil, dr_cr:nil, ac_type:nil, category:nil}
+options = {from_date: Time.zone.now -  (86400*365),to_date:nil, dr_cr:nil, ac_type:nil, category:nil}
 accounts = Mpayer::Account.aggregates(options)
 
 members = Mpayer::Account.find(25735, fetch:false).members
@@ -163,7 +163,7 @@ options = {
 		client_id: client_id, 
 		status: status,
 		payable_type: payable_type,
-		due_date: Time.now+(86400*31), 
+		due_date: Time.zone.now+(86400*31), 
 		pay: payable_items,
 		tags: tags,
 		flags: flags,
@@ -182,7 +182,7 @@ payable.destroy# Delete a payable
 ```ruby
 # Note: cr_party is the recieving (credited) account while dr_party is paying (debited) account
 
-transactions = Mpayer::Transaction.all(from: Time.now -  (86400*400))
+transactions = Mpayer::Transaction.all(from: Time.zone.now -  (86400*400))
 
 transaction = Mpayer::Transaction.where(ref_id:"KT00410000402")# Only ref_id supported currently
 

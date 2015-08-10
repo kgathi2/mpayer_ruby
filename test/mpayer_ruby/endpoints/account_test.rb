@@ -32,7 +32,7 @@ class TestMpayerAccount < Minitest::Test
 	def test_account_aggregates
 		# skip
 		options = {
-			from_date: Time.now -  (86400*365),
+			from_date: Time.zone.now -  (86400*365),
 			to_date:nil, 
 			dr_cr:nil, 
 			ac_type:nil, 

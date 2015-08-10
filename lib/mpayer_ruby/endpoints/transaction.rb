@@ -3,7 +3,7 @@ module Mpayer
 
 		class << self
 
-			# Mpayer::Transaction.all(from: Time.now -  (86400*400))
+			# Mpayer::Transaction.all(from: Time.zone.now -  (86400*400))
 			def all(page:1,per_page:100,from: nil,to: nil)
 				url = "/transactions/all"
 				from = from.strftime("%F %T") unless from.nil?

@@ -17,7 +17,7 @@ module Mpayer
 				client = new(id:client_id,response:response)
 			end
 
-			# client_attributes = {client: { client_name: "Kiki Lolo", client_birthday: Time.now.iso8601, client_type: "ext", ac_type: "cu",client_mobile: '073373932', client_email: 'lolo@kiki.com',currency: "kes", mandate:"s", sub_type: "od" }}
+			# client_attributes = {client: { client_name: "Kiki Lolo", client_birthday: Time.zone.now.iso8601, client_type: "ext", ac_type: "cu",client_mobile: '073373932', client_email: 'lolo@kiki.com',currency: "kes", mandate:"s", sub_type: "od" }}
 			# Mpayer::Client.create(client_attributes)
 			def create(options={})
 				url = "/clients"

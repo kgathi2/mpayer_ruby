@@ -16,7 +16,7 @@ module Mpayer::TestHelper
 		client_attributes = {
 			client: { 
 				client_name: Faker::Name.name, 
-				client_birthday: Time.now.iso8601, 
+				client_birthday: Time.zone.now.iso8601, 
 				client_type: "ext", 
 				ac_type: "cu",
 				client_mobile: Faker::Number.number(10) , 
@@ -71,7 +71,7 @@ module Mpayer::TestHelper
     		# client_id: client_id, 
     		# status: @model.status,
     		# payable_type: @model.payable_type,
-    		due_date: Time.now+(86400*31), 
+    		due_date: Time.zone.now+(86400*31), 
     		pay: payable_items
     		# tags:@tags,
     		# flags:@flags,
@@ -102,7 +102,7 @@ module Mpayer::TestHelper
 	end
 
 	def get_mpayer_transactions
-		@@get_mpayer_transactions ||= Mpayer::Transaction.all(from: Time.now -  (86400*400))
+		@@get_mpayer_transactions ||= Mpayer::Transaction.all(from: Time.zone.now -  (86400*400))
 		@@get_mpayer_transactions.any? ? @@get_mpayer_transactions : [create_mpayer_transaction]
 	end
 end

@@ -18,7 +18,7 @@ class TestMpayerTransaction < Minitest::Test
 	end
 
 	# def get_mpayer_transactions
-	# 	@transactions ||= Mpayer::Transaction.all(from: Time.now -  (86400*400))
+	# 	@transactions ||= Mpayer::Transaction.all(from: Time.zone.now -  (86400*400))
 	# 	@transactions.any? ? @transactions : [create_mpayer_transaction]
 	# end
 

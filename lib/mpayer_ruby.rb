@@ -1,3 +1,4 @@
+require "active_support/time"
 require "wsse"
 require "httparty"
 require "hashie"
