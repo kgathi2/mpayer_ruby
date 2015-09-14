@@ -2,7 +2,7 @@ module Mpayer
 	class Fetch
 		include HTTParty
 
-		base_uri "https://app.mpayer.co.ke/api/"
+		base_uri Mpayer.configuration.base_url
     parser proc {|data| Hashie::Mash.new(response: (JSON.parse(data) rescue {data:data}.to_json)  ).response}
     format :json
     headers 

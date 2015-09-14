@@ -105,13 +105,13 @@ client = Mpayer::Client.find(id, fetch:false) #Instantiates only
 client_attributes = {client: { client_name: "Kiki Lolo", client_birthday: Time.zone.now.iso8601, client_type: "ext", ac_type: "cu",client_mobile: '0733222222', client_email: 'lolo@kiki.com',currency: "kes", mandate:"s", sub_type: "od" }}
 client = Mpayer::Client.create(client_attributes)
 
-client = Mpayer::Client.find(id:20284,fetch:false).account(account_id) # Get clients account with id
-client = Mpayer::Client.find(id:20284,fetch:false)
+client = Mpayer::Client.find(20284,fetch:false).account(account_id) # Get clients account with id
+client = Mpayer::Client.find(20284,fetch:false)
 account = client.account(account_id) # Get clients account with id
 
-client_accounts = Mpayer::Client.find(id:20284,fetch:false).accounts(page:1,per_page:100)
-client_payables = Mpayer::Client.find(id:20284,fetch:false).payables(page:1,per_page:100)
-client_transactions = Mpayer::Client.find(id:20284,fetch:false).transactions(account_id, page:1,per_page:100)
+client_accounts = Mpayer::Client.find(20284,fetch:false).accounts(page:1,per_page:100)
+client_payables = Mpayer::Client.find(20284,fetch:false).payables(page:1,per_page:100)
+client_transactions = Mpayer::Client.find(20284,fetch:false).transactions(account_id, page:1,per_page:100)
 
 ```
 
