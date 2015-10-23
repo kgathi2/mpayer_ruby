@@ -2,7 +2,7 @@ module Mpayer
 	class Fetch
 		include HTTParty
 
-		base_uri Mpayer.configuration.base_url
+		# base_uri 'https://app.mpayer.co.ke/api/'
     parser proc {|data| Hashie::Mash.new(response: (JSON.parse(data) rescue {data:data}.to_json)  ).response}
     format :json
     headers 
@@ -14,7 +14,7 @@ module Mpayer
 
 			%w(get put post delete).each do |m|
 				define_method m do |path, options={}, &block|
-					options = {body: options.to_json}
+					options = {body: options.to_json, base_uri: Mpayer.configuration.base_url}
 					res = perform_request Net::HTTP::Put, path, options, &block if m == 'put'
 					res = perform_request Net::HTTP::Post, path, options, &block if m == 'post'
 					res = perform_request Net::HTTP::Get, path, options, &block if m == 'get'
